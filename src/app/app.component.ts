@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JokeService } from './joke.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'fakeJoke';
+  
+  jokes:any[]=[]
+  constructor(private jokeService:JokeService)
+  {
+       this.jokeService.getData().subscribe((data:any)=>this.jokes=data)
+  }
 }
